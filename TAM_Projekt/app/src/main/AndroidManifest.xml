@@ -11,6 +11,9 @@
         android:theme="@style/Theme.TAM_Projekt">
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DodawanieTransakcjiActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
