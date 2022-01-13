@@ -1,6 +1,7 @@
 package com.matdev.tam_projekt
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,12 @@ class TransakcjeAdapter(private var transakcje: List<Transakcje>) :
             holder.ilość.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
         holder.etykieta.text = transakcja.etykieta
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, SzczegolyActivity::class.java)
+            intent.putExtra("transakcja",transakcja)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

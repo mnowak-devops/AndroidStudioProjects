@@ -4,19 +4,25 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var usunięteTransakcje: Transakcje
     private lateinit var transakcje: List<Transakcje>
+    private lateinit var stareTransakcje: List<Transakcje>
     private lateinit var transakcjeAdapter: TransakcjeAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var db: AppBazaDanych
@@ -40,7 +46,23 @@ class MainActivity : AppCompatActivity() {
             layoutManager = linearLayoutManager
         }
 
+        // przeciagnij w celu usunięcia
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                usuwanieTransakcji(transakcje[viewHolder.adapterPosition])
+            }
+
+        }
+        val swipeHelper = ItemTouchHelper(itemTouchHelper)
+        swipeHelper.attachToRecyclerView(widok)
         val addTransakcjeButton = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.addTransakcjeButton)
 
         addTransakcjeButton.setOnClickListener{
@@ -71,6 +93,46 @@ class MainActivity : AppCompatActivity() {
         saldo.text = "%.2f zł".format(całkowitaIlość)
         budżet.text = "%.2f zł".format(budżetIlość)
         wydadki.text = "%.2f zł".format(wydadtkiIlość)
+    }
+
+    private fun cofnijUsunięcie(){
+        GlobalScope.launch {
+            db.transakcjeDao().insertAll(usunięteTransakcje)
+
+            transakcje = stareTransakcje
+
+            runOnUiThread() {
+                transakcjeAdapter.setData(transakcje)
+                updateTablicy()
+
+            }
+        }
+    }
+    private fun pokazSnackBar(){
+        val view = findViewById<View>(R.id.coordinator)
+        val snackbar = Snackbar.make(view, "Transakcja usunięta!", Snackbar.LENGTH_LONG)
+        snackbar.setAction("Cofnij"){
+            cofnijUsunięcie()
+        }
+            .setActionTextColor(ContextCompat.getColor(this, R.color.red))
+            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .show()
+    }
+    private fun usuwanieTransakcji(transakcja: Transakcje){
+        usunięteTransakcje = transakcja
+        stareTransakcje = transakcje
+
+        GlobalScope.launch {
+            db.transakcjeDao().delete(transakcja)
+
+            transakcje = transakcje.filter{ it.id != transakcja.id}
+            runOnUiThread{
+                updateTablicy()
+                transakcjeAdapter.setData(transakcje)
+                pokazSnackBar()
+        }
+
+        }
     }
 
     override fun onResume() {
