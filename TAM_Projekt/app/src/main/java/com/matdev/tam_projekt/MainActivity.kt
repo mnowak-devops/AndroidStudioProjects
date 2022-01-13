@@ -1,36 +1,37 @@
 package com.matdev.tam_projekt
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var transakcje: ArrayList<Transakcje>
+    private lateinit var transakcje: List<Transakcje>
     private lateinit var transakcjeAdapter: TransakcjeAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var db: AppBazaDanych
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        transakcje = arrayListOf(
-            Transakcje(etykieta = "Budżet wekendowy", ilość = 200.00),
-            Transakcje(etykieta = "Zakupy spożywcze", ilość = -132.23),
-            Transakcje(etykieta = "Paliwo Orle", ilość = -85.56),
-            Transakcje(etykieta = "Sniadanie Kavova", ilość = -56.00),
-            Transakcje(etykieta = "Żabka zakpy", ilość = 13.57),
-            Transakcje(etykieta = "Pensja z pracy", ilość = 3500.00),
-            Transakcje(etykieta = "Galeria Zakupy", ilość = -280.00),
-            Transakcje(etykieta = "Kwiaty dla żony", ilość = 67.00),
-
-        )
+        transakcje = arrayListOf()
 
         transakcjeAdapter = TransakcjeAdapter(transakcje)
         linearLayoutManager = LinearLayoutManager(this)
+
+        db = Room.databaseBuilder(this, AppBazaDanych::class.java, "transakcje").build()
 
         val widok = findViewById<RecyclerView>(R.id.widok)
 
@@ -39,9 +40,25 @@ class MainActivity : AppCompatActivity() {
             layoutManager = linearLayoutManager
         }
 
-        updateTablicy()
+
+        val addTransakcjeButton = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.addTransakcjeButton)
+
+        addTransakcjeButton.setOnClickListener{
+            val intent = Intent(this, DodawanieTransakcjiActivity::class.java)
+            startActivity(intent)
+        }
     }
 
+    private fun fetchAll(){
+       GlobalScope.launch {
+           transakcje = db.transakcjeDao().getAll()
+
+           runOnUiThread{
+               updateTablicy()
+               transakcjeAdapter.setData(transakcje)
+           }
+       }
+    }
     private fun updateTablicy(){
         val całkowitaIlość:Double = transakcje.map { it.ilość }.sum()
         val budżetIlość:Double = transakcje.filter { it.ilość > 0 }.map { it.ilość }.sum()
@@ -54,5 +71,10 @@ class MainActivity : AppCompatActivity() {
         saldo.text = "%.2f zł".format(całkowitaIlość)
         budżet.text = "%.2f zł".format(budżetIlość)
         wydadki.text = "%.2f zł".format(wydadtkiIlość)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchAll()
     }
 }

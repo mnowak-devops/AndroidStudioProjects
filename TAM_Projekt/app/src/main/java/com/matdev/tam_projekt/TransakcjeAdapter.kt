@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class TransakcjeAdapter(private val transakcje: ArrayList<Transakcje>) :
+class TransakcjeAdapter(private var transakcje: List<Transakcje>) :
     RecyclerView.Adapter<TransakcjeAdapter.TransakcjeHolder>() {
 
     class TransakcjeHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,5 +39,8 @@ class TransakcjeAdapter(private val transakcje: ArrayList<Transakcje>) :
         return transakcje.size
     }
 
-
+    fun setData(transakcje: List<Transakcje>){
+        this.transakcje = transakcje
+        notifyDataSetChanged()
+    }
 }
