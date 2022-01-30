@@ -3,8 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/bg.xml" value="0.3148148148148148" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/button.xml" value="0.3148148148148148" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/edit_text_bottom.xml" value="0.3148148148148148" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/edit_text_middle.xml" value="0.3148148148148148" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/edit_text_top.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/ic_add.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_dodawanie_transakcji.xml" value="0.2712962962962963" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_home.xml" value="0.4888888888888889" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_login.xml" value="0.48703703703703705" />
         <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_main.xml" value="0.30648148148148147" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_register.xml" value="0.4888888888888889" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_szczegoly.xml" value="0.48703703703703705" />
+        <entry key="..\:/Users/DevMat/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/transakcje_layout.xml" value="0.2712962962962963" />
         <entry key="..\:/Users/mn/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/close_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/mn/AndroidStudioProjects/TAM_Projekt/app/src/main/res/drawable/ic_add.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/mn/AndroidStudioProjects/TAM_Projekt/app/src/main/res/layout/activity_dodawanie_transakcji.xml" value="0.20199275362318841" />
