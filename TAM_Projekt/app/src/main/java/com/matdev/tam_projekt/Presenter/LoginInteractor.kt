@@ -21,8 +21,8 @@ class LoginInteractor {
                 listener.onPasswordError()
                 return@Runnable
             }
-            if (username.equals("himanshu", ignoreCase = true) && password.equals(
-                    "1234",
+            if (username.equals("mnowak", ignoreCase = true) && password.equals(
+                    "12345",
                     ignoreCase = true
                 )
             ) {

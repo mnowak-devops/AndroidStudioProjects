@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.matdev.tam_projekt.R
+import com.matdev.tam_projekt.View.SzczegolyActivity
 import com.matdev.tam_projekt.View.Transakcje
 
 class TransakcjeAdapter(private var transakcje: List<Transakcje>) :
