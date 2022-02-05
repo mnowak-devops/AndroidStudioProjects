@@ -3,6 +3,7 @@ package com.matdev.tam_projekt.View
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -14,21 +15,26 @@ class LoginActivity : AppCompatActivity(), LoginView {
     var etUsername: EditText? = null
     var etPassword: EditText? = null
     var progressbar: ProgressBar? = null
+    var loginMeButton: Button? = null
     var loginPresenter: LoginPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.matdev.tam_projekt.R.layout.activity_login)
         initViews()
         loginPresenter = LoginPresenter(this, LoginInteractor())
+        loginMeButton!!.setOnClickListener {
+            loginMe()
+        }
     }
 
     fun initViews() {
         etUsername = findViewById(com.matdev.tam_projekt.R.id.loginInput)
         etPassword = findViewById(com.matdev.tam_projekt.R.id.hasloInput)
         progressbar = findViewById(com.matdev.tam_projekt.R.id.progressbar)
+        loginMeButton = findViewById(com.matdev.tam_projekt.R.id.loginMe)
     }
 
-    public fun loginMe(view: View?) {
+    private fun loginMe() {
         showProgressbar()
         loginPresenter!!.validateCredentials(
             etUsername!!.text.toString().trim { it <= ' ' },
