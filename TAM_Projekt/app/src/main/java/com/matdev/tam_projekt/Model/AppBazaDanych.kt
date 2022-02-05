@@ -1,7 +1,9 @@
-package com.matdev.tam_projekt
+package com.matdev.tam_projekt.Model
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.matdev.tam_projekt.Presenter.TransakcjeDao
+import com.matdev.tam_projekt.View.Transakcje
 
 
 @Database(entities = arrayOf(Transakcje::class), version = 1)

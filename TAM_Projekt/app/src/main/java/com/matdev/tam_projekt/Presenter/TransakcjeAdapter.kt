@@ -1,6 +1,5 @@
-package com.matdev.tam_projekt
+package com.matdev.tam_projekt.Presenter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.matdev.tam_projekt.R
+import com.matdev.tam_projekt.View.Transakcje
 
 class TransakcjeAdapter(private var transakcje: List<Transakcje>) :
     RecyclerView.Adapter<TransakcjeAdapter.TransakcjeHolder>() {

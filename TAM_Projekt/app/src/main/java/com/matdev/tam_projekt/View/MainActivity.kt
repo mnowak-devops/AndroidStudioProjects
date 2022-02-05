@@ -1,12 +1,10 @@
-package com.matdev.tam_projekt
+package com.matdev.tam_projekt.View
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.snackbar.Snackbar
+import com.matdev.tam_projekt.Model.AppBazaDanych
+import com.matdev.tam_projekt.R
+import com.matdev.tam_projekt.Presenter.TransakcjeAdapter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -63,7 +64,9 @@ class MainActivity : AppCompatActivity() {
         }
         val swipeHelper = ItemTouchHelper(itemTouchHelper)
         swipeHelper.attachToRecyclerView(widok)
-        val addTransakcjeButton = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.addTransakcjeButton)
+        val addTransakcjeButton = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(
+            R.id.addTransakcjeButton
+        )
 
         addTransakcjeButton.setOnClickListener{
             val intent = Intent(this, DodawanieTransakcjiActivity::class.java)

@@ -1,6 +1,7 @@
-package com.matdev.tam_projekt
+package com.matdev.tam_projekt.Presenter
 
 import androidx.room.*
+import com.matdev.tam_projekt.View.Transakcje
 
 @Dao
 interface TransakcjeDao {

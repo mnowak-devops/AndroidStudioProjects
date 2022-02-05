@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAM_Projekt">
         <activity
-            android:name=".SzczegolyActivity"
+            android:name=".View.SzczegolyActivity"
             android:exported="false" />
         <activity
-            android:name=".DodawanieTransakcjiActivity"
+            android:name=".View.DodawanieTransakcjiActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".View.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

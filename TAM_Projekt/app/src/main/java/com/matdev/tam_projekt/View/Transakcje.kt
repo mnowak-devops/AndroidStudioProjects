@@ -1,4 +1,4 @@
-package com.matdev.tam_projekt
+package com.matdev.tam_projekt.View
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

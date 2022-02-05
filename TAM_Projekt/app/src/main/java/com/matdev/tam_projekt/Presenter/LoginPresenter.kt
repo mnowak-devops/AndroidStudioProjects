@@ -12,7 +12,11 @@ class LoginPresenter(loginView: LoginView?, loginInteractor: LoginInteractor) :
 
     fun validateCredentials(username: String?, password: String?) {
         if (loginView != null) {
-            loginInteractor.canLogin(username, password, this)
+            if (username != null) {
+                if (password != null) {
+                    loginInteractor.canLogin(username, password, this)
+                }
+            }
         }
     }
 
