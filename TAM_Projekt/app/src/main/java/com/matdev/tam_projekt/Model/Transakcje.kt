@@ -1,4 +1,6 @@
-package com.matdev.tam_projekt.View
+
+
+package com.matdev.tam_projekt.Model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,4 +12,5 @@ data class Transakcje(
     val etykieta: String,
     val ilość: Double,
     val opis: String): Serializable{
-}
+
+    }

@@ -12,6 +12,7 @@ import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.matdev.tam_projekt.Model.AppBazaDanych
+import com.matdev.tam_projekt.Model.Transakcje
 import com.matdev.tam_projekt.R
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -82,7 +83,7 @@ class SzczegolyActivity : AppCompatActivity() {
             finish()
         }
     }
-    private fun zmiana(transakcje:Transakcje){
+    private fun zmiana(transakcje: Transakcje){
         val db: AppBazaDanych = Room.databaseBuilder(this, AppBazaDanych::class.java, "transakcje").build()
 
         GlobalScope.launch {

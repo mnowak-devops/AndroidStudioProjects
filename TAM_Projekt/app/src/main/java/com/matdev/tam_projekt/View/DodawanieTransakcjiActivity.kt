@@ -1,14 +1,15 @@
 package com.matdev.tam_projekt.View
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.matdev.tam_projekt.Model.AppBazaDanych
+import com.matdev.tam_projekt.Model.Transakcje
 import com.matdev.tam_projekt.R
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,14 +43,13 @@ class DodawanieTransakcjiActivity : AppCompatActivity() {
             val opis : String = opisInput.text.toString()
             val ilość : Double? = ilośćInput.text.toString().toDoubleOrNull()
 
-            if(label.isEmpty())
-                etykietaLayout.error = "Proszę podać prawidłową etykiete transakcji!"
-
-            else if(ilość == null)
-                ilośćLayout.error = "Prosze podać poprawną wartość transakcji!"
-            else{
-                val transakcje = Transakcje(0, label,ilość,opis)
-                dodawanie(transakcje)
+            when {
+                label.isEmpty() -> etykietaLayout.error = "Proszę podać prawidłową etykiete transakcji!"
+                ilość == null -> ilośćLayout.error = "Prosze podać poprawną wartość transakcji!"
+                else -> {
+                    val transakcje = Transakcje(0, label,ilość,opis)
+                    dodawanie(transakcje)
+                }
             }
 
         }
@@ -57,7 +57,7 @@ class DodawanieTransakcjiActivity : AppCompatActivity() {
             finish()
         }
     }
-    private fun dodawanie(transakcje:Transakcje){
+    private fun dodawanie(transakcje: Transakcje){
         val db: AppBazaDanych = Room.databaseBuilder(this, AppBazaDanych::class.java, "transakcje").build()
 
         GlobalScope.launch {

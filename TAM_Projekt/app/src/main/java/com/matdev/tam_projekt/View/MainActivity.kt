@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.snackbar.Snackbar
 import com.matdev.tam_projekt.Model.AppBazaDanych
+import com.matdev.tam_projekt.Model.Transakcje
 import com.matdev.tam_projekt.R
 import com.matdev.tam_projekt.Presenter.TransakcjeAdapter
 import kotlinx.coroutines.GlobalScope
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
             transakcje = stareTransakcje
 
-            runOnUiThread() {
+            runOnUiThread {
                 transakcjeAdapter.setData(transakcje)
                 updateTablicy()
 
