@@ -92,4 +92,5 @@ class SzczegolyActivity : AppCompatActivity() {
         }
     }
 
+
 }
